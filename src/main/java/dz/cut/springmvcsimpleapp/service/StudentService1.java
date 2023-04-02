@@ -3,6 +3,9 @@ package dz.cut.springmvcsimpleapp.service;
 import dz.cut.springmvcsimpleapp.entities.Student;
 import dz.cut.springmvcsimpleapp.repositories.StudentRepository;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -28,7 +31,7 @@ public class StudentService1 implements IStudentService {
     }
 
     @Override
-    public List<Student> findAll() {
-        return studentRepository.findAll();
+    public Page<Student> findAll(Pageable pageable) {
+        return studentRepository.findAll(pageable);
     }
 }
