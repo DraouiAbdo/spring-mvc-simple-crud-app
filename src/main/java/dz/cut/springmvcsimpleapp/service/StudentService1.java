@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.List;
 
 @Service @Transactional @AllArgsConstructor
 public class StudentService1 implements IStudentService {
@@ -24,5 +25,10 @@ public class StudentService1 implements IStudentService {
     public Student findStudentByNameContains(String keyword) {
 
         return studentRepository.findStudentByNameContains(keyword);
+    }
+
+    @Override
+    public List<Student> findAll() {
+        return studentRepository.findAll();
     }
 }
