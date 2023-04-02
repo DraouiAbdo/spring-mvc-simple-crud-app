@@ -32,6 +32,16 @@ public class SpringMvcSimpleAppApplication {
             studentService.addNewStudent(s1);
             studentService.addNewStudent(s2);
             studentService.addNewStudent(s3);
+
+//            Student s4 = studentService.findStudentByNameContains("ma");
+//            System.out.println(s4.getName()+" rank is "+s4.getRank());
+
+            Student s5 = studentService.findStudentById(2L);
+            s5.setName("khaled");
+            studentService.addNewStudent(s5);
+
+
+
         };
     }
 }
