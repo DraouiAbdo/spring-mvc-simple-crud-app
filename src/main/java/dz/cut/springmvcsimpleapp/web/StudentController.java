@@ -2,6 +2,7 @@ package dz.cut.springmvcsimpleapp.web;
 
 import dz.cut.springmvcsimpleapp.entities.Student;
 import dz.cut.springmvcsimpleapp.service.IStudentService;
+import dz.cut.springmvcsimpleapp.service.StudentService1;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.Date;
 import java.util.List;
 
 @Controller @AllArgsConstructor
@@ -38,12 +40,31 @@ public class StudentController {
     }
 
 
-@PostMapping("delete")
+    @PostMapping("/delete")
     public String delete(Model model,
                          @RequestParam() Long id){
         studentService.deleteStudentById(id);
         return "redirect:/index";
     }
+
+
+    @GetMapping("/create")
+    public String create(){
+        return "create";
+    }
+    @PostMapping("/create")
+    public String create(Model model,
+                         @RequestParam String name,
+                         @RequestParam Date birthDate,
+                         @RequestParam int score){
+
+        Student s = new Student();
+        s.setName(name); s.setGraduated(false);
+        s.setRank(score);s.setBirthDate(new Date());
+        studentService.addNewStudent(s);
+        return "redirect:/index";
+    }
+
     @GetMapping("/")
     public String home(){
         return "redirect:/index";

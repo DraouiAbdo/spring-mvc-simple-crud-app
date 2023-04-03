@@ -1,5 +1,8 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+        layout:decorate="template1"
+>
 <head>
     <meta charset="UTF-8">
     <title>List of students</title>
@@ -8,65 +11,71 @@
 
 </head>
 <body>
-    <h1>Student database </h1>
-    <div class="container mt-10">
-        <form method="get" th:action="@{/index}"  >
 
-            <div class="mb-3">
-                <label for="name" class="form-label">Student name </label>
-                <input type="text" name="keyword" class="form-control" id="name" th:value="${keyword}" placeholder="type name !">
-            </div>
-            <div class="mb-3">
-                <button class="btn btn-primary " type="submit">Search</button>
-            </div>
+    <div layout:fragment="content1">
+        <div class="container mt-10">
+            <h1>Student database </h1>
+            <a th:href="@{/create}" class="btn btn-primary">Create new account </a>
+            <form method="get" th:action="@{/index}"  >
 
-        </form>
-        <table class="table">
-            <thead>
-            <tr>
-                <th>Name </th>
-                <th>BirthDate</th>
-                <th>Graduated ? </th>
-                <th>Rank</th>
-                <th>Action 1</th>
-                <th>Action 2</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr th:each ="s:${studentsList}">
-                <td th:text="${s.name}"></td>
-                <td th:text="${s.birthDate}"></td>
-                <td th:text="${s.graduated}"></td>
-                <td th:text="${s.rank}"></td>
-                <td>
-                    <form method="post" th:action="@{/delete}">
-                        <input type="hidden" name="id" th:value="${s.Id}">
-                        <button class="btn btn-danger">delete</button>
-                    </form>
-                </td>
-                <td>
-                    <form method="post" th:action="@{/delete}">
-                        <input type="hidden" name="id" th:value="${s.Id}">
-                        <button class="btn btn-success">update</button>
-                    </form>
-                </td>
-            </tr>
-            </tbody>
-        </table>
+                <div class="mb-3">
+                    <label for="name" class="form-label">Student name </label>
+                    <input type="text" name="keyword" class="form-control" id="name" th:value="${keyword}" placeholder="type name !">
+                </div>
+                <div class="mb-3">
+                    <button class="btn btn-primary " type="submit">Search</button>
+                </div>
 
-        <ul class="pagination" >
+            </form>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>Name </th>
+                    <th>BirthDate</th>
+                    <th>Graduated ? </th>
+                    <th>Rank</th>
+                    <th>Action 1</th>
+                    <th>Action 2</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each ="s:${studentsList}">
+                    <td th:text="${s.name}"></td>
+                    <td th:text="${s.birthDate}"></td>
+                    <td th:text="${s.graduated}"></td>
+                    <td th:text="${s.rank}"></td>
+                    <td>
+                        <form method="post" th:action="@{/delete}">
+                            <input type="hidden" name="id" th:value="${s.Id}">
+                            <button class="btn btn-danger">delete</button>
+                        </form>
+                    </td>
+                    <td>
+                        <form method="post" th:action="@{/delete}">
+                            <input type="hidden" name="id" th:value="${s.Id}">
+                            <button class="btn btn-success">update</button>
+                        </form>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
 
-            <li th:each="page,status:${pages}"
-                th:class="'page-item' +${currentPage==status.index?' active':''}">
-                <a class="page-link"  th:text="${status.index}"
-                   th:href="@{index(page=${status.index},size=${pageSize},keyword=${keyword})}" ></a>
-            </li>
+            <ul class="pagination" >
 
-        </ul>
+                <li th:each="page,status:${pages}"
+                    th:class="'page-item' +${currentPage==status.index?' active':''}">
+                    <a class="page-link"  th:text="${status.index}"
+                       th:href="@{index(page=${status.index},size=${pageSize},keyword=${keyword})}" ></a>
+                </li>
+
+            </ul>
 
 
 
+        </div>
     </div>
+
+
 
 </body>
 </html>
