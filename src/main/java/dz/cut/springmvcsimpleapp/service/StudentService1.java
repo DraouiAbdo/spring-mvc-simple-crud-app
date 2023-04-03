@@ -20,6 +20,11 @@ public class StudentService1 implements IStudentService {
     }
 
     @Override
+    public void deleteStudentById(Long id) {
+        studentRepository.deleteById(id);
+    }
+
+    @Override
     public Student findStudentById(Long id) {
         return studentRepository.findStudentById(id);
     }

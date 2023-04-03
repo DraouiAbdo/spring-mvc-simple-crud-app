@@ -28,6 +28,8 @@
                 <th>BirthDate</th>
                 <th>Graduated ? </th>
                 <th>Rank</th>
+                <th>Action 1</th>
+                <th>Action 2</th>
             </tr>
             </thead>
             <tbody>
@@ -36,6 +38,18 @@
                 <td th:text="${s.birthDate}"></td>
                 <td th:text="${s.graduated}"></td>
                 <td th:text="${s.rank}"></td>
+                <td>
+                    <form method="post" th:action="@{/delete}">
+                        <input type="hidden" name="id" th:value="${s.Id}">
+                        <button class="btn btn-danger">delete</button>
+                    </form>
+                </td>
+                <td>
+                    <form method="post" th:action="@{/delete}">
+                        <input type="hidden" name="id" th:value="${s.Id}">
+                        <button class="btn btn-success">update</button>
+                    </form>
+                </td>
             </tr>
             </tbody>
         </table>

@@ -8,6 +8,7 @@ import java.util.List;
 
 public interface IStudentService {
     Student addNewStudent(Student student);
+    void deleteStudentById(Long id);
     Student findStudentById(Long id);
     Page<Student> findStudentsByNameContains(String keyword, Pageable page);
     Page<Student> findAll(Pageable pageable);

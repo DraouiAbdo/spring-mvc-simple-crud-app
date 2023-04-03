@@ -9,6 +9,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
@@ -33,12 +34,28 @@ public class StudentController {
         model.addAttribute("pageSize",size);
         model.addAttribute("keyword",keyword);
         model.addAttribute("pages",new int[studentsPage.getTotalPages()]);
-        return "students";
+        return "index";
     }
 
 
+@PostMapping("delete")
+    public String delete(Model model,
+                         @RequestParam() Long id){
+        studentService.deleteStudentById(id);
+        return "redirect:/index";
+    }
     @GetMapping("/")
     public String home(){
-        return "students";
+        return "redirect:/index";
     }
 }
+
+
+
+
+
+
+
+
+
+
