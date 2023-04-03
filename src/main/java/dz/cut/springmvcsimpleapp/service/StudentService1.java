@@ -25,13 +25,14 @@ public class StudentService1 implements IStudentService {
     }
 
     @Override
-    public Student findStudentByNameContains(String keyword) {
+    public Page<Student> findStudentsByNameContains(String keyword, Pageable pageable) {
 
-        return studentRepository.findStudentByNameContains(keyword);
+        return studentRepository.findStudentByNameContains(keyword,pageable );
     }
 
     @Override
     public Page<Student> findAll(Pageable pageable) {
+
         return studentRepository.findAll(pageable);
     }
 }

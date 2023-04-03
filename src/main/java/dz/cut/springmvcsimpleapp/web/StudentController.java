@@ -17,18 +17,28 @@ import java.util.List;
 public class StudentController {
     private  IStudentService studentService;
 
-    @GetMapping("/students")
+    @GetMapping("/index")
     public String listAllStudent(Model model,
                                  @RequestParam(name="page",defaultValue = "0")int page,
-                                 @RequestParam(name="size", defaultValue = "5") int size){
+                                 @RequestParam(name="size", defaultValue = "5") int size,
+                                 @RequestParam(name="keyword", defaultValue = "") String keyword){
 //        List<Student> students= studentService.findAll();
 
 //        model.addAttribute("studentsList",students);
-        Page<Student> studentsPage= studentService.findAll(PageRequest.of(page,size));
+
+        //Page<Student> studentsPage= studentService.findAll(PageRequest.of(page,size));
+        Page<Student> studentsPage = studentService.findStudentsByNameContains(keyword, PageRequest.of(page,size));
         model.addAttribute("studentsList",studentsPage.getContent());
         model.addAttribute("currentPage",page);
         model.addAttribute("pageSize",size);
+        model.addAttribute("keyword",keyword);
         model.addAttribute("pages",new int[studentsPage.getTotalPages()]);
+        return "students";
+    }
+
+
+    @GetMapping("/")
+    public String home(){
         return "students";
     }
 }

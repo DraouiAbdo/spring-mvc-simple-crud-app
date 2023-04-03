@@ -9,6 +9,6 @@ import java.util.List;
 public interface IStudentService {
     Student addNewStudent(Student student);
     Student findStudentById(Long id);
-    Student findStudentByNameContains(String keyword);
+    Page<Student> findStudentsByNameContains(String keyword, Pageable page);
     Page<Student> findAll(Pageable pageable);
 }
