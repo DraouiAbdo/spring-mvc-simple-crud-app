@@ -20,9 +20,7 @@ public class SpringMvcSimpleAppApplication {
     @Bean
     CommandLineRunner commandLineRunner(IStudentService studentService){
         return args -> {
-//            Stream.of("Amine","Omar","Youcef").forEach( name ->
-//                    Student s1 = new Student(null,"Amine",new Date(),true,99);
-//            );
+
 
             Student s1 = new Student(null,"Nasro",new Date(),true,50);
 

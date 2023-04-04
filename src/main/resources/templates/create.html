@@ -12,29 +12,42 @@
 <body>
 
     <div layout:fragment="content1">
-        <div class="container mt-10">
+
 
             <div class="container-sm mt-10">
                 <h1>Student database </h1>
                 <form method="post" th:action="@{/create}">
                     <div class="row mb-3">
-                        <label for="username" class="col-sm-2 col-form-label">Name</label>
+                        <label for="name" class="col-sm-2 col-form-label">Name</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" name="name" id="username">
+                            <input type="text" autocomplete="off" class="form-control" name="name" th:value="${student.name}" id="name">
+                            <span th:errors="${student.name}"></span>
                         </div>
                     </div>
                     <div class="row mb-3">
-                        <label for="birthdate" class="col-sm-2 col-form-label">Birth date</label>
+                        <label for="birthDate" class="col-sm-2 col-form-label">Birth date</label>
                         <div class="col-sm-10">
-                            <input type="date" class="form-control" name="birthdate" id="birthdate">
+                            <input type="date" class="form-control" name="birthDate" th:value="${student.birthDate}" id="birthDate">
+                            <span th:errors="${student.birthDate}"></span>
                         </div>
                     </div>
                     <div class="row mb-3">
-                        <label for="score" class="col-sm-2 col-form-label">gpa</label>
+                        <label for="score" class="col-sm-2 col-form-label">Score</label>
                         <div class="col-sm-10">
-                            <input type="number" min="0" class="form-control" name="score" id="score">
+                            <input type="text" class="form-control" name="rank" th:value="${student.rank}" id="score">
+                            <span th:errors="${student.rank}"></span>
                         </div>
                     </div>
+                    <div class="row mb-3">
+
+                        <div class="mb-3 form-check">
+                            <label class="form-check-label ml-5" for="graduated">graduated ? </label>
+                            <input type="checkbox" th:checked="${student.graduated}" name="graduated" class="form-check-input" id="graduated">
+                            <span th:errors="${student.graduated}"></span>
+
+                        </div>
+                    </div>
+
 
                     <button type="submit" class="btn btn-primary">Create Account</button>
                 </form>
@@ -42,9 +55,6 @@
                 <a th:href="@{/index}" class="mt-2 btn btn-primary">Go back to home page </a>
             </div>
 
-
-
-        </div>
     </div>
 
 

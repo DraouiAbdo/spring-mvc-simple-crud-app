@@ -32,10 +32,12 @@ public class StudentController {
         //Page<Student> studentsPage= studentService.findAll(PageRequest.of(page,size));
         Page<Student> studentsPage = studentService.findStudentsByNameContains(keyword, PageRequest.of(page,size));
         model.addAttribute("studentsList",studentsPage.getContent());
-        model.addAttribute("currentPage",page);
+
         model.addAttribute("pageSize",size);
         model.addAttribute("keyword",keyword);
         model.addAttribute("pages",new int[studentsPage.getTotalPages()]);
+
+
         return "index";
     }
 
@@ -49,19 +51,13 @@ public class StudentController {
 
 
     @GetMapping("/create")
-    public String create(){
+    public String create(Model model){
+        model.addAttribute("student",new Student());
         return "create";
     }
-    @PostMapping("/create")
-    public String create(Model model,
-                         @RequestParam String name,
-                         @RequestParam Date birthDate,
-                         @RequestParam int score){
-
-        Student s = new Student();
-        s.setName(name); s.setGraduated(false);
-        s.setRank(score);s.setBirthDate(new Date());
-        studentService.addNewStudent(s);
+    @PostMapping(path = "/create")
+    public String create(Model model,Student student){
+        studentService.addNewStudent(student);
         return "redirect:/index";
     }
 
