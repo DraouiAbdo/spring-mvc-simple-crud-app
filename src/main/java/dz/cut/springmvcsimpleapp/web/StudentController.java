@@ -34,7 +34,7 @@ public class StudentController {
         //Page<Student> studentsPage= studentService.findAll(PageRequest.of(page,size));
         Page<Student> studentsPage = studentService.findStudentsByNameContains(keyword, PageRequest.of(page,size));
         model.addAttribute("studentsList",studentsPage.getContent());
-
+        model.addAttribute("currentPage",page);
         model.addAttribute("pageSize",size);
         model.addAttribute("keyword",keyword);
         model.addAttribute("pages",new int[studentsPage.getTotalPages()]);

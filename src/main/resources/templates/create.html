@@ -39,14 +39,16 @@
 
                         </div>
                     </div>
+
                     <div class="row mb-3">
+                        <label for="graduated" class="col-sm-2 col-form-label form-check-label">graduated</label>
+                        <div class="col-sm-10">
+                            <div class="form-check">
 
-                        <div class="mb-3 form-check">
-                            <label class="form-check-label ml-5" for="graduated">graduated ? </label>
-                            <input type="checkbox" th:checked="${student.graduated}" name="graduated" class="form-check-input" id="graduated">
-                            <span class="text-danger" th:errors="${student.graduated}"></span>
+                                <input type="checkbox" th:checked="${student.graduated}" name="graduated" class="form-check-input" id="graduated">
+                                <span class="text-danger" th:errors="${student.graduated}"></span>
 
-
+                            </div>
                         </div>
                     </div>
 
@@ -54,7 +56,7 @@
                     <button type="submit" class="btn btn-primary">Create Account</button>
                 </form>
 
-                <a th:href="@{/index}" class="mt-2 btn btn-primary">Go back to home page </a>
+
             </div>
 
     </div>

@@ -14,16 +14,20 @@
 
     <div layout:fragment="content1">
         <div class="container mt-10">
-            <h1>Student database </h1>
-            <a th:href="@{/create}" class="btn btn-primary">Create new account </a>
+            <h1 class="mt-10">Student database </h1>
+
             <form method="get" th:action="@{/index}"  >
 
-                <div class="mb-3">
-                    <label for="name" class="form-label">Student name </label>
-                    <input type="text" name="keyword" class="form-control" id="name" th:value="${keyword}" placeholder="type name !">
-                </div>
-                <div class="mb-3">
-                    <button class="btn btn-primary " type="submit">Search</button>
+                <div class="row g-3">
+                    <div class="col-sm">
+                        <label for="name" class="form-label">Student name </label>
+                    </div>
+                    <div class="col-sm-7">
+                        <input type="text" name="keyword" class="form-control" id="name" th:value="${keyword}" placeholder="type name !">
+                    </div>
+                    <div class="col-sm">
+                        <button class="btn btn-primary " type="submit">Search</button>
+                    </div>
                 </div>
 
             </form>
