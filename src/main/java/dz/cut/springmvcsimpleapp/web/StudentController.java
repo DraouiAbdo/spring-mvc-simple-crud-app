@@ -65,21 +65,23 @@ public class StudentController {
     }
 
     @GetMapping("/update")
-    public String update(Model model, @RequestParam() Long id){
-        Student student  = studentService.findStudentById(id);
-        System.out.println("ddd"+student.getName());
-        System.out.println("rank"+student.getRank());
+    public String update(Model model, @RequestParam(defaultValue = "0") Long id){
 
-        model.addAttribute("s",student);
-        return "index";
+        Student student  = studentService.findStudentById(id);
+
+
+        model.addAttribute("student",student);
+        return "update";
 
     }
 
 
     @PostMapping(path = "/update")
-    public String update(Model model, @Valid Student student){
+    public String update(Model model, @Valid Student student, BindingResult bindingResult){
+        if(bindingResult.hasErrors()) return "update";
         studentService.addNewStudent(student);
-        return "index";
+
+        return "redirect:/index";
     }
 
     @GetMapping("/")

@@ -52,7 +52,7 @@
                     </td>
                     <td>
                         <form method="get" th:action="@{/update}">
-                            <input type="text" name="id" th:value="${s.Id}">
+                            <input type="hidden" name="id" th:value="${s.Id}">
                             <button type="submit" class="btn btn-success">update</button>
                         </form>
                     </td>
