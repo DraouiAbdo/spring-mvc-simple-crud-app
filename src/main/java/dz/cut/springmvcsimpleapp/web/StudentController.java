@@ -9,10 +9,12 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.validation.Valid;
 import java.util.Date;
 import java.util.List;
 
@@ -56,9 +58,28 @@ public class StudentController {
         return "create";
     }
     @PostMapping(path = "/create")
-    public String create(Model model,Student student){
+    public String create(Model model, @Valid Student student, BindingResult bindingResult){
+        if(bindingResult.hasErrors()) return "create";
         studentService.addNewStudent(student);
-        return "redirect:/index";
+        return "create";
+    }
+
+    @GetMapping("/update")
+    public String update(Model model, @RequestParam() Long id){
+        Student student  = studentService.findStudentById(id);
+        System.out.println("ddd"+student.getName());
+        System.out.println("rank"+student.getRank());
+
+        model.addAttribute("s",student);
+        return "index";
+
+    }
+
+
+    @PostMapping(path = "/update")
+    public String update(Model model, @Valid Student student){
+        studentService.addNewStudent(student);
+        return "index";
     }
 
     @GetMapping("/")

@@ -47,13 +47,13 @@
                     <td>
                         <form method="post" th:action="@{/delete}">
                             <input type="hidden" name="id" th:value="${s.Id}">
-                            <button class="btn btn-danger">delete</button>
+                            <button type="submit" class="btn btn-danger">delete</button>
                         </form>
                     </td>
                     <td>
-                        <form method="post" th:action="@{/delete}">
-                            <input type="hidden" name="id" th:value="${s.Id}">
-                            <button class="btn btn-success">update</button>
+                        <form method="get" th:action="@{/update}">
+                            <input type="text" name="id" th:value="${s.Id}">
+                            <button type="submit" class="btn btn-success">update</button>
                         </form>
                     </td>
                 </tr>
