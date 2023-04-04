@@ -13,6 +13,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.validation.Valid;
 import java.util.Date;
@@ -27,11 +28,7 @@ public class StudentController {
                                  @RequestParam(name="page",defaultValue = "0")int page,
                                  @RequestParam(name="size", defaultValue = "5") int size,
                                  @RequestParam(name="keyword", defaultValue = "") String keyword){
-//        List<Student> students= studentService.findAll();
 
-//        model.addAttribute("studentsList",students);
-
-        //Page<Student> studentsPage= studentService.findAll(PageRequest.of(page,size));
         Page<Student> studentsPage = studentService.findStudentsByNameContains(keyword, PageRequest.of(page,size));
         model.addAttribute("studentsList",studentsPage.getContent());
         model.addAttribute("currentPage",page);
@@ -82,6 +79,12 @@ public class StudentController {
         studentService.addNewStudent(student);
 
         return "redirect:/index";
+    }
+
+    @GetMapping("/students")
+    @ResponseBody
+    public List<Student> listAllStudents(){
+        return studentService.findAll();
     }
 
     @GetMapping("/")

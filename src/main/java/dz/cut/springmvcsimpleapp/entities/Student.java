@@ -9,6 +9,8 @@ import javax.persistence.*;
 import javax.validation.constraints.DecimalMax;
 import javax.validation.constraints.Size;
 import java.util.Date;
+
+// Student.java
 @Entity
 @Data @AllArgsConstructor @NoArgsConstructor
 public class Student {

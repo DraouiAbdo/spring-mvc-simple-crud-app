@@ -6,10 +6,11 @@ import org.springframework.data.domain.Pageable;
 
 import java.util.List;
 
+
 public interface IStudentService {
     Student addNewStudent(Student student);
     void deleteStudentById(Long id);
     Student findStudentById(Long id);
     Page<Student> findStudentsByNameContains(String keyword, Pageable page);
-    Page<Student> findAll(Pageable pageable);
+    List<Student> findAll();
 }

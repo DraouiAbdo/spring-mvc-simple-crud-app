@@ -17,6 +17,7 @@ public class SpringMvcSimpleAppApplication {
         SpringApplication.run(SpringMvcSimpleAppApplication.class, args);
     }
 
+    // SpringMvcSimpleAppApplication.java
     @Bean
     CommandLineRunner commandLineRunner(IStudentService studentService){
         return args -> {
